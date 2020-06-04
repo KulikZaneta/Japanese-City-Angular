@@ -1,4 +1,4 @@
-# JapanCity
+# Japan City
 This is a simple application that displays information about Japanese cities.
 
 Project in the development process. 
@@ -15,7 +15,7 @@ First clone this project and install all packages using command prompt.
 
 Then run project in command prompt.
 
-* ng serve
+* npm start
 
 The project is available at http: // localhost: 4200 /
 
