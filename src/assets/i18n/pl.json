@@ -1,8 +1,9 @@
 {
     "menu": {
         "cities": "Lista miast",
-        "attractions": "Atrakcje",
+        "attractions": "Dodaj atrakcje",
         "add": "Dodaj miasto",
-        "user": "Logowanie"
+        "user": "Logowanie",
+        "attraction-list": "Lista atrakcji"
     }
 }

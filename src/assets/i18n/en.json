@@ -1,8 +1,9 @@
 {
     "menu": {
         "cities": "City List",
-        "attractions": "Attractions",
+        "attractions": "Add attractions",
         "add": "Add city",
-        "user": "Log in"
+        "user": "Log in",
+        "attraction-list": "Attraction List"
     }
 }
