@@ -1,27 +1,37 @@
 # JapanCity
+This is a simple application that displays information about Japanese cities.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.6.
+Project in the development process. 
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project has dependencies that require Node 12.16.1, together with NPM 6.13.4.
 
-## Code scaffolding
+## Installing
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+First clone this project and install all packages using command prompt.
+
+ * npm install
+
+Then run project in command prompt.
+
+* ng serve
+
+The project is available at http: // localhost: 4200 /
 
 ## Build
+1. Clone and unpack Java application -> https://github.com/KulikZaneta/Japanese-Cities
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+2. Run the Japanese-Cities-Angular application by following the installation steps
 
-## Running unit tests
+## Built With
+* Angular - a TypeScript-based open-source front-end web application platform
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Angular CLI - a tool to initialize, develop, scaffold and maintain Angular applications
 
-## Running end-to-end tests
+* NGXS - a state management pattern + library for Angular
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Features
+* adding logic for attraction views (redirection to the page)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* spring security
