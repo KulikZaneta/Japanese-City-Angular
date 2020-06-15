@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { JapaneseCityDto } from 'src/api/models';
 import { Observable } from 'rxjs';
 import { state } from '@angular/animations';
@@ -15,6 +16,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
   styleUrls: ['./attractions.component.sass']
 })
 export class AttractionsComponent implements OnInit {
+  attractionId: number
   attractionForm = new FormGroup({}) 
   attractionFields: FormlyFieldConfig[] = [
     {
@@ -39,26 +41,39 @@ export class AttractionsComponent implements OnInit {
   @Select(state => state.japaneseCity.citySelect)
   citySelect$: Observable<JapaneseCityDto[]>
 
-  constructor(public store: Store, public formBuilder: FormBuilder) { }
+  constructor(public store: Store, public formBuilder: FormBuilder, public route: ActivatedRoute) { }
 
 
   ngOnInit() {
     this.store.dispatch(new Attraction.PageAction(0, 10)),
-    this.attractionForm = this.formBuilder.group({
-      name: [null, Validators.required], 
-      url: null,
-      city: [null, Validators.required]
-    })
+    this.createAttractionForm(null, null, null)
     this.store.dispatch(new IdAndNameCityAction())
+    this.route.params.subscribe(params => {
+      this.attractionId = params['id']
+      if(this.attractionId) {
+        this.store.dispatch(new Attraction.FetchIdAction(this.attractionId)).subscribe(response => {
+           const attractions = response.attraction.attractionById
+           this.createAttractionForm(attractions.name, attractions.url, attractions.cityId)
+        })
+      }
+    })
   }
 
   addAttraction() {
     this.store.dispatch(new Attraction.AddAction({cityId: this.attractionForm.value.city, name: this.attractionForm.value.name, url: this.attractionForm.value.url }))
+    this.attractionForm.reset()
   }
 
-  updateAttraction(attractionDto: AttractionDto) {
-    this.store.dispatch(new Attraction.UpdateAction(attractionDto))
+  updateAttraction() {
+    this.store.dispatch(new Attraction.UpdateAction({cityId: this.attractionForm.value.ciidty, name: this.attractionForm.value.name, url: this.attractionForm.value.url, id: this.attractionId }))
   }
   
+  createAttractionForm(name:string, url:string, city:number) {
+    this.attractionForm = this.formBuilder.group({
+      name: [name, Validators.required], 
+      url: url,
+      city: [city, Validators.required]
+    })
+  }
 
 }

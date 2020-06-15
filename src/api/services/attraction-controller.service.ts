@@ -20,6 +20,7 @@ class AttractionControllerService extends __BaseService {
   static readonly getAttractionPageUsingGETPath = '/v1/api/attractions';
   static readonly saveAttractionUsingPOSTPath = '/v1/api/attractions';
   static readonly updateAttractionUsingPUTPath = '/v1/api/attractions';
+  static readonly getAllAttractionUsingGETPath = '/v1/api/attractions/all';
   static readonly getAttractionByIdUsingGETPath = '/v1/api/attractions/{id}';
   static readonly deleteAttractionUsingDELETEPath = '/v1/api/attractions/{id}';
 
@@ -146,6 +147,39 @@ class AttractionControllerService extends __BaseService {
   updateAttractionUsingPUT(attractionDto: AttractionDto): __Observable<AttractionDto> {
     return this.updateAttractionUsingPUTResponse(attractionDto).pipe(
       __map(_r => _r.body as AttractionDto)
+    );
+  }
+
+  /**
+   * @return OK
+   */
+  getAllAttractionUsingGETResponse(): __Observable<__StrictHttpResponse<Array<AttractionDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/v1/api/attractions/all`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<AttractionDto>>;
+      })
+    );
+  }
+  /**
+   * @return OK
+   */
+  getAllAttractionUsingGET(): __Observable<Array<AttractionDto>> {
+    return this.getAllAttractionUsingGETResponse().pipe(
+      __map(_r => _r.body as Array<AttractionDto>)
     );
   }
 
