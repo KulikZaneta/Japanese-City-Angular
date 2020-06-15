@@ -1,22 +1,46 @@
 <div class="mat-elevation-z8" style="opacity: 1;" *ngIf="attractionPage$ | async as attractionPage">
-    <table mat-table [dataSource]="attraction">
-  
-      <ng-container matColumnDef="name";>
-        <th mat-header-cell *matHeaderCellDef><h1>Name</h1></th>
-        <td mat-cell *matCellDef="let element"><h2>{{element.name}}</h2></td>
-      </ng-container>
-  
-      <ng-container matColumnDef="url">
-        <th mat-header-cell *matHeaderCellDef><h1>URL</h1></th>
-        <td mat-cell *matCellDef="let element"><h2>{{element.url}}</h2></td>
-      </ng-container>
-  
-      <ng-container matColumnDef="city">
-        <th mat-header-cell *matHeaderCellDef><h1>City</h1></th>
-        <td mat-cell *matCellDef="let element"><h2>{{element.city}}</h2></td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
+  <table mat-table [dataSource]="attractionPage.content">
+
+    <ng-container matColumnDef="name" ;>
+      <th mat-header-cell *matHeaderCellDef>
+        <h1>Name</h1>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <h2>{{element.name}}</h2>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef>
+        <h1>URL</h1>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <h2>{{element.url}}</h2>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef>
+        <h1>City</h1>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <h2>{{element.city}}</h2>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef>
+        <h1>More</h1>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="updateAttraction(element.id)">Edit</button>
+        <button mat-raised-button color="warn" (click)="deleteAttraction(element.id)">Delete</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [length]="attractionPage.totalElements" [pageSize]="attractionPage.size" (page)="changePage($event)" ></mat-paginator>
+</div>

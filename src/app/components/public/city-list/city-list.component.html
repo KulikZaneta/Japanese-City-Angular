@@ -39,6 +39,7 @@
         <th mat-header-cell *matHeaderCellDef><h1>Details</h1></th>
         <td mat-cell *matCellDef="let element"> 
           <a mat-raised-button color="primary" routerLink="/city-details/{{element.id}}">More</a>
+          <button mat-raised-button color="accent" (click)="updateCity(element.id)">Edit</button>
           <button mat-raised-button color="warn" (click)="deleteCity(element.id)">Delete</button>
             
         </td>

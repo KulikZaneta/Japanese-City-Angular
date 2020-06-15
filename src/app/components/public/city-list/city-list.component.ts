@@ -5,6 +5,7 @@ import { Store, Select, State } from '@ngxs/store';
 import { Observable, Subject } from 'rxjs';
 import { JapaneseCityDto } from 'src/api/models';
 import { debounceTime } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-city-list',
@@ -14,7 +15,7 @@ import { debounceTime } from 'rxjs/operators';
 export class CityListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'area', 'population', 'details'];
   dataSource = new MatTableDataSource<any>();
-  public autoComplete = new Subject<string>()
+  autoComplete = new Subject<string>()
 
   @Select(state => state.japaneseCity.japaneseCities)
   japaneseCity$: Observable<JapaneseCityDto[]>
@@ -22,12 +23,16 @@ export class CityListComponent implements OnInit {
   @Select(state => state.japaneseCity.autoCompleteCities)
   autoComplete$: Observable<string[]>
   
-  constructor(public store: Store) { }
+  constructor(public store: Store, public router: Router) { }
 
 
   ngOnInit() {
     this.store.dispatch(new JapaneseCity.FetchAllAction())
     this.autoComplete.pipe(debounceTime(400)).subscribe(autoComplete => this.store.dispatch(new AutoCompleteAction(autoComplete)))
+  }
+
+  updateCity(id: number) {
+    this.router.navigate(['edit-city', id])
   }
 
   deleteCity(id: number) {
