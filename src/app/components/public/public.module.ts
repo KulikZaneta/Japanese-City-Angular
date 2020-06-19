@@ -24,6 +24,7 @@ import { UserComponent } from './user/user.component';
 import {MatIconModule} from '@angular/material/icon';
 import { AttractionsComponent } from './add-attractions/attractions.component';
 import { AttractionListComponent } from './attraction-list/attraction-list.component';
+import { JapaneseCity } from './state/japanese-city.actions';
 
 
 
@@ -62,6 +63,14 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent
+  },
+  {
+    path: 'edit-attraction/:id',
+    component: AttractionsComponent
+  },
+  {
+    path: 'edit-city/:id',
+    component: AddCityComponent
   },
   {
     path: '**',

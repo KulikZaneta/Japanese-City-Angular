@@ -45,8 +45,8 @@ export class AttractionsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.store.dispatch(new Attraction.PageAction(0, 10)),
-    this.createAttractionForm(null, null, null)
+    this.store.dispatch(new Attraction.PageAction(0, 10))
+    this.createAttractionForm()
     this.store.dispatch(new IdAndNameCityAction())
     this.route.params.subscribe(params => {
       this.attractionId = params['id']
@@ -68,7 +68,7 @@ export class AttractionsComponent implements OnInit {
     this.store.dispatch(new Attraction.UpdateAction({cityId: this.attractionForm.value.ciidty, name: this.attractionForm.value.name, url: this.attractionForm.value.url, id: this.attractionId }))
   }
   
-  createAttractionForm(name:string, url:string, city:number) {
+  createAttractionForm(name?:string, url?:string, city?:number) : void {
     this.attractionForm = this.formBuilder.group({
       name: [name, Validators.required], 
       url: url,
