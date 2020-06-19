@@ -29,7 +29,7 @@ export class JapaneseCityState {
   constructor(public japaneseCityService: JapaneseCityControllerService, public matSnackBar: MatSnackBar){}
 
   @Action(JapaneseCity.FetchAllAction)
-  fetchAll(ctx: StateContext<JapaneseCityStateModel>, {}: JapaneseCity.FetchAllAction) {
+  fetchAll(ctx: StateContext<JapaneseCityStateModel>) {
     return this.japaneseCityService.allCitiesUsingGET().pipe(tap(response => ctx.patchState({japaneseCities: response})));
   }
 
@@ -67,11 +67,11 @@ export class JapaneseCityState {
 
   @Action(AutoCompleteAction)
   autoCompleteCities(ctx: StateContext<JapaneseCityStateModel>, {autoComplete}: AutoCompleteAction) {
-    return this.japaneseCityService.autoCompleteByNameUsingGET(name).pipe(tap(response => ctx.patchState({autoCompleteCities: response})));;
+    return this.japaneseCityService.autoCompleteByNameUsingGET(autoComplete).pipe(tap(response => ctx.patchState({autoCompleteCities: response})));
   }
 
   @Action(IdAndNameCityAction)
-  idAndNameCity(ctx: StateContext<JapaneseCityStateModel>, {}: IdAndNameCityAction) {
+  idAndNameCity(ctx: StateContext<JapaneseCityStateModel>) {
     return this.japaneseCityService.getIdAndNameUsingGET().pipe(tap(response => ctx.patchState({citySelect: response})))
   }
 }

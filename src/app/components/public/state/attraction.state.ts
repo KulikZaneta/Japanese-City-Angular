@@ -9,13 +9,15 @@ import { Attraction } from './attraction.actions';
 export class AttractionStateModel {
   public attractionById: AttractionDto;
   public attractionPage: PageAttractionDto;
+
 }
 
 @State<AttractionStateModel>({
   name: 'attraction',
   defaults: {
    attractionById: null,
-   attractionPage: null 
+   attractionPage: null,
+  
   }
 })
 export class AttractionState {
@@ -51,6 +53,5 @@ export class AttractionState {
       duration:3000
     })))
   }
-
 
 }
