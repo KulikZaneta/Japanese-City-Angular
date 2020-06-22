@@ -1,7 +1,6 @@
 import { Store } from '@ngxs/store';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
 import { JapaneseCity } from '../state/japanese-city.actions';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,7 +16,7 @@ export class AddCityComponent implements OnInit {
   constructor(public store: Store, public formBuilder: FormBuilder, public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.createCityForm(null, null, null, null)
+    this.createCityForm()
     this.route.params.subscribe(params => {
       this.cityId = params['id']
       if (this.cityId) {
@@ -27,10 +26,9 @@ export class AddCityComponent implements OnInit {
         })
       }
     })
-
   }
 
-  createCityForm(name: null, population: null, area: null, description: null) {
+  createCityForm(name?: string, population?: string, area?: string, description?: string) {
     this.cityForm = this.formBuilder.group({
       name: [name, Validators.required],
       population: population,
@@ -64,8 +62,8 @@ export class AddCityComponent implements OnInit {
   updateCity() {
     this.store.dispatch(new JapaneseCity.EditAction({
       name: this.cityForm.value.name, population: this.cityForm.value.population, area: this.cityForm.value.area, description: this.cityForm.value.details, id: this.cityId
-    }))
-
+    }
+    ))
   }
 
   addCity() {
@@ -76,7 +74,4 @@ export class AddCityComponent implements OnInit {
     }))
     this.cityForm.reset()
   }
-
-
-
 }

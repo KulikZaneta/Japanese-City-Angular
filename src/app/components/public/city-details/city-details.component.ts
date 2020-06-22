@@ -1,6 +1,4 @@
 import { JapaneseCityDto } from 'src/api/models';
-import { state } from '@angular/animations';
-
 import { Store, Select } from '@ngxs/store';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +12,6 @@ import { Observable } from 'rxjs';
 })
 export class CityDetailsComponent implements OnInit {
 
-  
   @Select(state => state.japaneseCity.detailsCity)
   detailsCity$: Observable<JapaneseCityDto>
   constructor(public store: Store, public activatedRoute: ActivatedRoute) { }
@@ -22,5 +19,4 @@ export class CityDetailsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => this.store.dispatch(new JapaneseCity.FetchDetailsAction(params['id'])))
   }
-
 }

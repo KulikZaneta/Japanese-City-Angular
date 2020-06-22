@@ -10,6 +10,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
   <mat-form-field class="example-form-field">
     <mat-label>Popoulation</mat-label>
     <input matInput formControlName="population" type="text">
@@ -17,6 +18,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
   <mat-form-field class="example-form-field">
     <mat-label>Area</mat-label>
     <input matInput formControlName="area" type="text">
@@ -24,6 +26,7 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
   <mat-form-field class="example-form-field">
     <mat-label>Details of city</mat-label>
     <input matInput formControlName="details" type="text">
@@ -31,21 +34,30 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
   <div formArrayName="attraction" *ngFor="let item of getControls(); let i = index">
     <div [formGroupName]="i">
       <mat-form-field class="example-form-field">
         <mat-label>Name of attraction</mat-label>
         <input matInput formControlName="name" type="text">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
+
       <mat-form-field class="example-form-field">
         <mat-label>URL of attraction</mat-label>
         <input matInput formControlName="url" type="text">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="removeAttraction(i)">Remove attraction</button>
+
+      <button mat-mini-fab color="warn" (click)="removeAttraction(i)"><mat-icon>delete</mat-icon></button>
     </div>
   </div>
-  <button mat-raised-button color="primary" (click)="addNewAttraction()">Add attraction</button>
 
-  <button *ngIf="!cityId" mat-raised-button color="primary" (click)="addCity()">Save</button>
+  <button mat-raised-button color="primary" (click)="addNewAttraction()">Add new attraction</button>
+  <button *ngIf="!cityId" mat-raised-button color="accent" (click)="addCity()">Save</button>
   <button *ngIf="cityId" mat-raised-button color="warn" (click)="updateCity()">Change</button>
 </form>

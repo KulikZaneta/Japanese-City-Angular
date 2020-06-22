@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./attraction-list.component.sass']
 })
 export class AttractionListComponent implements OnInit {
-  displayedColumns=["name", "url", "city", "more"]
+  displayedColumns = ["name", "url", "more"]
 
   @Select(state => state.attraction.attractionPage)
   attractionPage$: Observable<PageAttractionDto>

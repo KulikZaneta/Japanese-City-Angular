@@ -1,23 +1,20 @@
 <mat-card class="example-card" *ngIf="detailsCity$ | async as detailsCity">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title style="font-size: 40px;">{{detailsCity.name}}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image src="assets/japanese.jpg" alt="city-japan" style="width: 100%; height: 350px"/>
-    
-    <mat-card-content>
-      <p>Area: {{detailsCity.area}}</p>
-      <p>Population: {{detailsCity.population}} </p>
-      <p style="font-weight: normal;">{{detailsCity.description}}</p>
-      <ul>
-        <li *ngFor="let item of detailsCity.attractions">
-          <a routerLink="/attraction-details/{{item.id}}">{{item.name}}</a>
-        </li>
-      </ul>
-    </mat-card-content>
-    <mat-card-actions>
-    </mat-card-actions>
-  </mat-card>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title style="font-size: 40px;">{{detailsCity.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="assets/japanese.jpg" alt="city-japan" style="width: 100%; height: 350px" />
 
-
-
+  <mat-card-content>
+    <p>Area: {{detailsCity.area}}</p>
+    <p>Population: {{detailsCity.population}} </p>
+    <p style="font-weight: normal;">{{detailsCity.description}}</p>
+    <ul>
+      <li *ngFor="let item of detailsCity.attractions">
+        <a href="{{item.url}}" target="_blank">{{item.name}}</a>
+      </li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>

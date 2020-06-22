@@ -7,8 +7,8 @@ import { MatSnackBar } from '@angular/material';
 import { Attraction } from './attraction.actions';
 
 export class AttractionStateModel {
-  public attractionById: AttractionDto;
-  public attractionPage: PageAttractionDto;
+  public attractionById: AttractionDto
+  public attractionPage: PageAttractionDto
 
 }
 
