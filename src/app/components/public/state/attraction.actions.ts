@@ -24,7 +24,6 @@ export class DeleteAction {
   static readonly type = '[Attraction] Delete';
   constructor(public id: number) {}
 }
-
 }
 
 

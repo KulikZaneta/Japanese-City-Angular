@@ -1,32 +1,31 @@
 <div class="background">
-    <img src="assets/attractions.jpg" alt="attractions" style="position: fixed ">
-  </div>
+  <img src="assets/attractions.jpg" alt="attractions" style="position: fixed ">
+</div>
 
-<form [formGroup] = "attractionForm">
+<form [formGroup]="attractionForm">
   <mat-form-field class="example-form-field">
     <mat-label>Name of attraction</mat-label>
-    <input matInput formControlName="name" type="text" >
+    <input matInput formControlName="name" type="text">
     <button mat-button matSuffix mat-icon-button aria-label="Clear">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
   <mat-form-field class="example-form-field">
     <mat-label>URL</mat-label>
-    <input matInput formControlName="url" type="text" >
+    <input matInput formControlName="url" type="text">
     <button mat-button matSuffix mat-icon-button aria-label="Clear">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
+
   <mat-form-field>
     <mat-label>City</mat-label>
-    <mat-select formControlName="city"  multiple>
+    <mat-select formControlName="city" multiple>
       <mat-option *ngFor="let item of (citySelect$ | async) " [value]="item.id">{{item.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-    <button *ngIf="!attractionId" mat-raised-button color="primary" (click)="addAttraction()">Save</button>
-<button *ngIf="attractionId" mat-raised-button color="warn" (click)="updateAttraction()">Change</button>
-    
+
+  <button *ngIf="!attractionId" mat-raised-button color="primary" (click)="addAttraction()">Save</button>
+  <button *ngIf="attractionId" mat-raised-button color="warn" (click)="updateAttraction()">Change</button>
 </form>
-
-
-
