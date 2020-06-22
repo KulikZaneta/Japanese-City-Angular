@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { JapaneseCityDto } from '../models/japanese-city-dto';
+import { PageJapaneseCityDto } from '../models/page-japanese-city-dto';
 import { JapaneseCitySelect } from '../models/japanese-city-select';
 
 /**
@@ -20,8 +21,8 @@ class JapaneseCityControllerService extends __BaseService {
   static readonly nameCityUsingGETPath = '/v1/api/city';
   static readonly addCityUsingPOSTPath = '/v1/api/city';
   static readonly updateCityUsingPUTPath = '/v1/api/city';
-  static readonly allCitiesUsingGETPath = '/v1/api/city/all';
   static readonly autoCompleteByNameUsingGETPath = '/v1/api/city/auto-complete';
+  static readonly getJapaneseCityPageUsingGETPath = '/v1/api/city/page';
   static readonly getIdAndNameUsingGETPath = '/v1/api/city/select';
   static readonly cityByIdUsingGETPath = '/v1/api/city/{id}';
   static readonly deleteCityUsingDELETEPath = '/v1/api/city/{id}';
@@ -142,39 +143,6 @@ class JapaneseCityControllerService extends __BaseService {
   }
 
   /**
-   * @return OK
-   */
-  allCitiesUsingGETResponse(): __Observable<__StrictHttpResponse<Array<JapaneseCityDto>>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/v1/api/city/all`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Array<JapaneseCityDto>>;
-      })
-    );
-  }
-  /**
-   * @return OK
-   */
-  allCitiesUsingGET(): __Observable<Array<JapaneseCityDto>> {
-    return this.allCitiesUsingGETResponse().pipe(
-      __map(_r => _r.body as Array<JapaneseCityDto>)
-    );
-  }
-
-  /**
    * @param name name
    * @return OK
    */
@@ -207,6 +175,53 @@ class JapaneseCityControllerService extends __BaseService {
   autoCompleteByNameUsingGET(name: string): __Observable<Array<string>> {
     return this.autoCompleteByNameUsingGETResponse(name).pipe(
       __map(_r => _r.body as Array<string>)
+    );
+  }
+
+  /**
+   * @param params The `JapaneseCityControllerService.GetJapaneseCityPageUsingGETParams` containing the following parameters:
+   *
+   * - `size`: size
+   *
+   * - `page`: page
+   *
+   * @return OK
+   */
+  getJapaneseCityPageUsingGETResponse(params: JapaneseCityControllerService.GetJapaneseCityPageUsingGETParams): __Observable<__StrictHttpResponse<PageJapaneseCityDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.size != null) __params = __params.set('size', params.size.toString());
+    if (params.page != null) __params = __params.set('page', params.page.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/v1/api/city/page`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<PageJapaneseCityDto>;
+      })
+    );
+  }
+  /**
+   * @param params The `JapaneseCityControllerService.GetJapaneseCityPageUsingGETParams` containing the following parameters:
+   *
+   * - `size`: size
+   *
+   * - `page`: page
+   *
+   * @return OK
+   */
+  getJapaneseCityPageUsingGET(params: JapaneseCityControllerService.GetJapaneseCityPageUsingGETParams): __Observable<PageJapaneseCityDto> {
+    return this.getJapaneseCityPageUsingGETResponse(params).pipe(
+      __map(_r => _r.body as PageJapaneseCityDto)
     );
   }
 
@@ -315,6 +330,22 @@ class JapaneseCityControllerService extends __BaseService {
 }
 
 module JapaneseCityControllerService {
+
+  /**
+   * Parameters for getJapaneseCityPageUsingGET
+   */
+  export interface GetJapaneseCityPageUsingGETParams {
+
+    /**
+     * size
+     */
+    size: number;
+
+    /**
+     * page
+     */
+    page: number;
+  }
 }
 
 export { JapaneseCityControllerService }
