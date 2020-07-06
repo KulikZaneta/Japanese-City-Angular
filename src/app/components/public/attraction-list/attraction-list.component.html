@@ -15,7 +15,9 @@
         <h1>URL</h1>
       </th>
       <td mat-cell *matCellDef="let element">
-        <h2>{{element.url}}</h2>
+        <a href="{{element.url}}" target="_blank">
+          <h3>{{element.url}}</h3>
+        </a>
       </td>
     </ng-container>
 

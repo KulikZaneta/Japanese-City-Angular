@@ -1,1 +1,6 @@
-<p>user works!</p>
+<form [formGroup] = "loginForm">
+    <formly-form [form] = "loginForm" [fields] = "logInFields">
+        <button mat-raised-button (click) = "login()" [disabled] = "!loginForm.valid">Log in</button>
+
+    </formly-form>
+</form>
