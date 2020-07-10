@@ -4,6 +4,7 @@
         "attractions": "Dodaj atrakcje",
         "add": "Dodaj miasto",
         "user": "Logowanie",
-        "attraction-list": "Lista atrakcji"
+        "attraction-list": "Lista atrakcji",
+        "logOut": "Wyloguj"
     }
 }
