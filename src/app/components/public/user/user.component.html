@@ -1,6 +1,11 @@
-<form [formGroup] = "loginForm">
-    <formly-form [form] = "loginForm" [fields] = "logInFields">
-        <button mat-raised-button (click) = "login()" [disabled] = "!loginForm.valid">Log in</button>
-
-    </formly-form>
-</form>
+<div class="login-page">
+    <img src="assets/tori.jpg" alt="tori" style="z-index: -100%; position: fixed">
+</div>
+    <mat-card class="mat-elevation-z12">
+        <mat-card-title style="text-align: center">Sign in</mat-card-title>
+        <form [formGroup]="loginForm">
+            <formly-form [form]="loginForm" [fields]="logInFields">
+                <button mat-raised-button color="accent" (click)="login()" [disabled]="!loginForm.valid">Sign in</button>
+            </formly-form>
+        </form>
+    </mat-card>

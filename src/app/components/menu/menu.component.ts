@@ -1,8 +1,11 @@
+import { UserState } from './../public/state/user.state';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { Select, Store } from '@ngxs/store';
+import { LogOutAction } from '../public/state/user.actions';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +13,7 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrls: ['./menu.component.sass']
 })
 export class MenuComponent implements OnInit {
-  
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -18,12 +21,20 @@ export class MenuComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, public translate: TranslateService) {}
+  constructor(private breakpointObserver: BreakpointObserver, public translate: TranslateService, public store: Store) { }
+
+  @Select(state => state.user.jwtToken)
+  jwtToken$: Observable<String>
 
   ngOnInit(): void {
     this.translate.setDefaultLang('en')
   }
+  
   public changeLanguage(language: string) {
     this.translate.use(language)
+  }
+
+  public logOut() {
+    this.store.dispatch(new LogOutAction())
   }
 }

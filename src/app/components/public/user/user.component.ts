@@ -11,7 +11,7 @@ import { LogInAction } from '../state/user.actions';
 })
 export class UserComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({})
-  logInFields: FormlyFieldConfig[] =[
+  logInFields: FormlyFieldConfig[] = [
     {
       key: 'username',
       type: 'input',
@@ -27,7 +27,8 @@ export class UserComponent implements OnInit {
       templateOptions: {
         label: 'password',
         placeholder: 'enter the password',
-        required: true
+        required: true,
+        type: 'password'
       }
     }
   ]
@@ -39,7 +40,7 @@ export class UserComponent implements OnInit {
 
   login() {
     this.store.dispatch(new LogInAction(this.loginForm.value.username, this.loginForm.value.password))
-    console.log('component')
+    this.loginForm.reset()
   }
 
 }

@@ -1,3 +1,5 @@
+import { AuthGuardService } from './../private/guards/auth-guard.service';
+import { UserState } from './state/user.state';
 import { Page404Component } from './page404/page404.component';
 import { AttractionState } from './state/attraction.state';
 import { TranslateModule } from '@ngx-translate/core';
@@ -5,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CityDetailsComponent } from './city-details/city-details.component';
 import { CityListComponent } from './city-list/city-list.component';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxsModule } from '@ngxs/store';
@@ -75,7 +77,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     MatTableModule,
     MatPaginatorModule,
-    NgxsModule.forRoot([JapaneseCityState, AttractionState]),
+    NgxsModule.forRoot([JapaneseCityState, AttractionState, UserState]),
     HttpClientModule,
     MatButtonModule,
     TranslateModule,

@@ -1,7 +1,8 @@
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { LogInAction } from './user.actions';
+import { LogInAction, LogOutAction } from './user.actions';
+import Cookie from 'js-cookie';
 
 export class UserStateModel {
   jwtToken: string
@@ -17,7 +18,7 @@ export class UserStateModel {
 export class UserState {
 
 
-  constructor(public httpClient: HttpClient){
+  constructor(public httpClient: HttpClient) {
   }
 
   @Selector()
@@ -26,14 +27,18 @@ export class UserState {
   }
 
   @Action(LogInAction)
-  logIn(ctx: StateContext<UserStateModel>, {username, password}: LogInAction) {
-    const formData = new FormData();
-    formData.append('username', username)
-    formData.append('password', password)
+  logIn(ctx: StateContext<UserStateModel>, { username, password }: LogInAction) {
+    return this.httpClient.post<any>('http://localhost:8080/login', { username, password }).pipe(
+      tap(response => {
+        ctx.patchState({jwtToken: response.token})
+      Cookie.set("token", response.token)
+      })
+      )
+  }
 
-    console.log('state')
-    return this.httpClient.post<any>('http://localhost:8080/login', formData, {observe: 'response'}).pipe(
-      tap(response => console.log(response.headers.get('Authorization')))
-    )
+  @Action(LogOutAction)
+  logOut(ctx: StateContext<UserStateModel>) {
+    ctx.patchState({jwtToken: null})
+    Cookie.remove("token")
   }
 }
