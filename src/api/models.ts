@@ -4,5 +4,8 @@ export { JapaneseCitySelect } from './models/japanese-city-select';
 export { ModelAndView } from './models/model-and-view';
 export { Pageable } from './models/pageable';
 export { PageAttractionDto } from './models/page-attraction-dto';
+export { PageJapaneseCityDto } from './models/page-japanese-city-dto';
+export { Role } from './models/role';
 export { Sort } from './models/sort';
+export { User } from './models/user';
 export { View } from './models/view';

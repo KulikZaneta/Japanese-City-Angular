@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationInterface } from './api-configuration';
 
 import { BasicErrorControllerService } from './services/basic-error-controller.service';
+import { UserControllerService } from './services/user-controller.service';
 import { AttractionControllerService } from './services/attraction-controller.service';
 import { JapaneseCityControllerService } from './services/japanese-city-controller.service';
 
@@ -21,6 +22,7 @@ import { JapaneseCityControllerService } from './services/japanese-city-controll
   providers: [
     ApiConfiguration,
     BasicErrorControllerService,
+    UserControllerService,
     AttractionControllerService,
     JapaneseCityControllerService
   ],
