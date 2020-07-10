@@ -20,20 +20,16 @@ export class CityListComponent implements OnInit {
   dataSource = new MatTableDataSource<any>();
   autoComplete = new Subject<string>()
 
-  @Select(state => state.japaneseCity.japaneseCities)
-  japaneseCity$: Observable<JapaneseCityDto[]>
-
   @Select(state => state.japaneseCity.autoCompleteCities)
   autoComplete$: Observable<string[]>
 
   @Select(state => state.japaneseCity.citiesPage)
   citiesPage$: Observable<PageJapaneseCityDto>
-  
+
   constructor(public store: Store, public router: Router) { }
 
 
   ngOnInit() {
-    //this.store.dispatch(new JapaneseCity.FetchAllAction())
     this.store.dispatch(new PageAction(0, 10))
     this.autoComplete.pipe(debounceTime(400)).subscribe(autoComplete => this.store.dispatch(new AutoCompleteAction(autoComplete)))
   }

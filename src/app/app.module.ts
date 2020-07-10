@@ -16,7 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
@@ -40,7 +40,7 @@ import { AttractionListComponent } from './components/public/attraction-list/att
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    PublicModule, 
+    PublicModule,
     MatProgressSpinnerModule,
     TranslateModule.forRoot({
       loader: {
@@ -57,8 +57,8 @@ import { AttractionListComponent } from './components/public/attraction-list/att
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  
+export class AppModule {
+
 }
 
 export function HttpLoaderFactory(http: HttpClient) {

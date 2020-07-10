@@ -57,5 +57,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons [length]="citiesPage.totalElements" [pageSize]="citiesPage.size" (page)="page($event)" ></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons [length]="citiesPage.totalElements"
+    [pageSize]="citiesPage.size" (page)="page($event)"></mat-paginator>
 </div>
