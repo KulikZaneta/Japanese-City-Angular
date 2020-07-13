@@ -1,8 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
 import { JapaneseCityDto } from 'src/api/models';
 import { Observable } from 'rxjs';
-import { IdAndNameCityAction } from './../state/japanese-city.actions';
-import { Store, State, Select } from '@ngxs/store';
+import { IdAndNameCityAction } from '../state/japanese-city.actions';
+import { Store, Select } from '@ngxs/store';
 import { Component, OnInit } from '@angular/core';
 import { Attraction } from '../state/attraction.actions';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

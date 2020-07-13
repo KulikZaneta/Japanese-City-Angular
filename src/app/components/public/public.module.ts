@@ -25,44 +25,52 @@ import { UserComponent } from './user/user.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AttractionsComponent } from './add-attractions/attractions.component';
 import { AttractionListComponent } from './attraction-list/attraction-list.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {
-    path: 'city-details/:id',
-    component: CityDetailsComponent
-  },
-  {
-    path: 'city-list',
-    component: CityListComponent
-
-  },
-  {
-    path: 'add-attractions',
-    component: AttractionsComponent
-  },
   {
     path: '',
     component: CityListComponent
   },
   {
+    path: 'city-list',
+    component: CityListComponent
+  },
+  {
+    path: 'city-details/:id',
+    component: CityDetailsComponent
+  },
+  {
     path: 'add-city',
-    component: AddCityComponent
+    component: AddCityComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'edit-city/:id',
+    component: AddCityComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'attraction-list',
     component: AttractionListComponent
   },
   {
+    path: 'add-attractions',
+    component: AttractionsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'edit-attraction/:id',
+    component: AttractionsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'user',
     component: UserComponent
   },
   {
-    path: 'edit-attraction/:id',
-    component: AttractionsComponent
-  },
-  {
-    path: 'edit-city/:id',
-    component: AddCityComponent
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: '**',
@@ -71,7 +79,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [CityDetailsComponent, CityListComponent, AttractionsComponent, AddCityComponent, UserComponent, AttractionListComponent],
+  declarations: [AttractionsComponent, AddCityComponent, AttractionListComponent, CityDetailsComponent, CityListComponent, Page404Component, UserComponent, RegisterComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),

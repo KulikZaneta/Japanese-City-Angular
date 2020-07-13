@@ -26,6 +26,9 @@ export class CityListComponent implements OnInit {
   @Select(state => state.japaneseCity.citiesPage)
   citiesPage$: Observable<PageJapaneseCityDto>
 
+  @Select(state => state.user.jwtToken)
+  jwtToken$: Observable<string>
+
   constructor(public store: Store, public router: Router) { }
 
 

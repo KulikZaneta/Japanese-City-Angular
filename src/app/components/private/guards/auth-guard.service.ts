@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
     if (this.store.selectSnapshot(UserState.jwtToken)) {
       return true
     }
-    this.router.navigate(['/login'])
+    this.router.navigate(['/user'])
     return false
   }
 }

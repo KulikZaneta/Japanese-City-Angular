@@ -27,8 +27,7 @@ import { AttractionListComponent } from './components/public/attraction-list/att
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    Page404Component
+    MenuComponent
   ],
   imports: [
     BrowserModule,
