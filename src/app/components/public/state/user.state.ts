@@ -1,8 +1,9 @@
 import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { LogInAction, LogOutAction } from './user.actions';
+import { LogInAction, LogOutAction, RegisterUserAction } from './user.actions';
 import Cookie from 'js-cookie';
+import { UserControllerService } from 'src/api/services';
 
 export class UserStateModel {
   jwtToken: string
@@ -18,7 +19,7 @@ export class UserStateModel {
 export class UserState {
 
 
-  constructor(public httpClient: HttpClient) {
+  constructor(public httpClient: HttpClient, public userService: UserControllerService) {
   }
 
   @Selector()
@@ -40,5 +41,10 @@ export class UserState {
   logOut(ctx: StateContext<UserStateModel>) {
     ctx.patchState({jwtToken: null})
     Cookie.remove("token")
+  }
+
+  @Action(RegisterUserAction)
+  register(ctx: StateContext<UserStateModel>, { userDto }: RegisterUserAction) {
+    return this.userService.registerUsingPOST(userDto)
   }
 }

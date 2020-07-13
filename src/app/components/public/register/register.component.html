@@ -1,0 +1,9 @@
+<mat-card class="mat-elevation-z12">
+    <mat-card-title style="text-align: center">Sign up</mat-card-title>
+    <form [formGroup]="registerForm">
+        <formly-form [form]="registerForm" [fields]="registerFields">
+            <button mat-raised-button color="accent" (click)="register()" [disabled]="!registerForm.valid">Sign
+                up</button>
+        </formly-form>
+    </form>
+</mat-card>
