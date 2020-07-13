@@ -7,7 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { User } from '../models/user';
+import { UserDto } from '../models/user-dto';
 
 /**
  * User Controller
@@ -26,13 +26,13 @@ class UserControllerService extends __BaseService {
   }
 
   /**
-   * @param user user
+   * @param userDto userDto
    */
-  registerUsingPOSTResponse(user: User): __Observable<__StrictHttpResponse<null>> {
+  registerUsingPOSTResponse(userDto: UserDto): __Observable<__StrictHttpResponse<null>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = user;
+    __body = userDto;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/users/register`,
@@ -51,10 +51,10 @@ class UserControllerService extends __BaseService {
     );
   }
   /**
-   * @param user user
+   * @param userDto userDto
    */
-  registerUsingPOST(user: User): __Observable<null> {
-    return this.registerUsingPOSTResponse(user).pipe(
+  registerUsingPOST(userDto: UserDto): __Observable<null> {
+    return this.registerUsingPOSTResponse(userDto).pipe(
       __map(_r => _r.body as null)
     );
   }
