@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
@@ -13,9 +14,13 @@ import { Router } from '@angular/router';
 })
 export class AttractionListComponent implements OnInit {
   displayedColumns = ["name", "url", "more"]
+  displayColumunNotLogged = ["name", "url"]
 
   @Select(state => state.attraction.attractionPage)
   attractionPage$: Observable<PageAttractionDto>
+
+  @Select(state => state.user.jwtToken)
+  jwtToken$ : Observable<string>
 
   constructor(public store: Store, public router: Router) { }
 
