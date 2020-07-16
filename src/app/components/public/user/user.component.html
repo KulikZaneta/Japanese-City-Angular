@@ -6,7 +6,7 @@
     <form [formGroup]="loginForm">
         <formly-form [form]="loginForm" [fields]="logInFields">
             <button mat-raised-button color="accent" (click)="login()" [disabled]="!loginForm.valid">Sign in</button>
-            <a mat-raised-button routerLink="/register">Sign up</a>
+            <a class="btn"mat-raised-button routerLink="/register">Sign up</a>
         </formly-form>
     </form>
 </mat-card>
