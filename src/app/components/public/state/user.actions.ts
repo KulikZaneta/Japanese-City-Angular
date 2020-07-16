@@ -14,3 +14,8 @@ export class RegisterUserAction {
   constructor(public userDto: UserDto) { }
 }
 
+export class LoginWithCookieAction {
+  static readonly type = '[User] LoginWithCookieAction';
+  constructor() { }
+}
+

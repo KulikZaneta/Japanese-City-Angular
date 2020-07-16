@@ -1,9 +1,10 @@
 import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { LogInAction, LogOutAction, RegisterUserAction } from './user.actions';
+import { LogInAction, LogOutAction, RegisterUserAction, LoginWithCookieAction } from './user.actions';
 import Cookie from 'js-cookie';
 import { UserControllerService } from 'src/api/services';
+import { Navigate } from '@ngxs/router-plugin';
 
 export class UserStateModel {
   jwtToken: string
@@ -31,20 +32,30 @@ export class UserState {
   logIn(ctx: StateContext<UserStateModel>, { username, password }: LogInAction) {
     return this.httpClient.post<any>('http://localhost:8080/login', { username, password }).pipe(
       tap(response => {
-        ctx.patchState({jwtToken: response.token})
-      Cookie.set("token", response.token)
+        ctx.patchState({ jwtToken: response.token })
+        Cookie.set("token", response.token)
+        ctx.dispatch(new Navigate(['/city-list']))
       })
-      )
+    )
   }
 
   @Action(LogOutAction)
   logOut(ctx: StateContext<UserStateModel>) {
-    ctx.patchState({jwtToken: null})
+    ctx.patchState({ jwtToken: null })
     Cookie.remove("token")
   }
 
   @Action(RegisterUserAction)
   register(ctx: StateContext<UserStateModel>, { userDto }: RegisterUserAction) {
     return this.userService.registerUsingPOST(userDto)
+  }
+
+  @Action(LoginWithCookieAction)
+  loginWithCookie(ctx: StateContext<UserStateModel>) {
+    const token = Cookie.get("token")
+    if(token) {
+      ctx.patchState({jwtToken: token})
+    }
+
   }
 }

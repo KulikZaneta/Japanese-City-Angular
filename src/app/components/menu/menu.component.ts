@@ -5,7 +5,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
-import { LogOutAction } from '../public/state/user.actions';
+import { LogOutAction, LoginWithCookieAction } from '../public/state/user.actions';
 
 @Component({
   selector: 'app-menu',
@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.translate.setDefaultLang('en')
+    this.store.dispatch(new LoginWithCookieAction())
   }
   
   public changeLanguage(language: string) {
