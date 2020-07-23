@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { PageUserDto } from '../models/page-user-dto';
 import { UserDto } from '../models/user-dto';
 
 /**
@@ -16,6 +17,8 @@ import { UserDto } from '../models/user-dto';
   providedIn: 'root',
 })
 class UserControllerService extends __BaseService {
+  static readonly pageUsingGETPath = '/users';
+  static readonly infoUserUsingGETPath = '/users/current';
   static readonly registerUsingPOSTPath = '/users/register';
 
   constructor(
@@ -23,6 +26,86 @@ class UserControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * @param params The `UserControllerService.PageUsingGETParams` containing the following parameters:
+   *
+   * - `size`: size
+   *
+   * - `page`: page
+   *
+   * @return OK
+   */
+  pageUsingGETResponse(params: UserControllerService.PageUsingGETParams): __Observable<__StrictHttpResponse<PageUserDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    if (params.size != null) __params = __params.set('size', params.size.toString());
+    if (params.page != null) __params = __params.set('page', params.page.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/users`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<PageUserDto>;
+      })
+    );
+  }
+  /**
+   * @param params The `UserControllerService.PageUsingGETParams` containing the following parameters:
+   *
+   * - `size`: size
+   *
+   * - `page`: page
+   *
+   * @return OK
+   */
+  pageUsingGET(params: UserControllerService.PageUsingGETParams): __Observable<PageUserDto> {
+    return this.pageUsingGETResponse(params).pipe(
+      __map(_r => _r.body as PageUserDto)
+    );
+  }
+
+  /**
+   * @return OK
+   */
+  infoUserUsingGETResponse(): __Observable<__StrictHttpResponse<UserDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/users/current`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<UserDto>;
+      })
+    );
+  }
+  /**
+   * @return OK
+   */
+  infoUserUsingGET(): __Observable<UserDto> {
+    return this.infoUserUsingGETResponse().pipe(
+      __map(_r => _r.body as UserDto)
+    );
   }
 
   /**
@@ -61,6 +144,22 @@ class UserControllerService extends __BaseService {
 }
 
 module UserControllerService {
+
+  /**
+   * Parameters for pageUsingGET
+   */
+  export interface PageUsingGETParams {
+
+    /**
+     * size
+     */
+    size: number;
+
+    /**
+     * page
+     */
+    page: number;
+  }
 }
 
 export { UserControllerService }
