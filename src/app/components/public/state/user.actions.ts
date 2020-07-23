@@ -19,3 +19,8 @@ export class LoginWithCookieAction {
   constructor() { }
 }
 
+export class CurrentUserAction {
+  static readonly type = '[User] CurrentUserAction';
+  constructor() { }
+}
+

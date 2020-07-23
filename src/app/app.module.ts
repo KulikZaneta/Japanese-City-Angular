@@ -1,3 +1,4 @@
+import { PrivateModule } from './components/private/private.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -22,6 +23,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { Page404Component } from './components/public/page404/page404.component';
 import { AttractionListComponent } from './components/public/attraction-list/attraction-list.component';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 
 
 @NgModule({
@@ -51,7 +53,11 @@ import { AttractionListComponent } from './components/public/attraction-list/att
     MatButtonToggleModule,
     ReactiveFormsModule,
     FormlyModule.forRoot(),
-    FormlyMaterialModule
+    FormlyMaterialModule,
+    NgxsRouterPluginModule.forRoot(),
+    PrivateModule,
+    PublicModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

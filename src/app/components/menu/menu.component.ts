@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, public translate: TranslateService, public store: Store) { }
 
   @Select(state => state.user.jwtToken)
-  jwtToken$: Observable<String>
+  jwtToken$: Observable<string>
 
   ngOnInit(): void {
     this.translate.setDefaultLang('en')
