@@ -57,7 +57,11 @@ export class UserState {
 
   @Action(RegisterUserAction)
   register(ctx: StateContext<UserStateModel>, { userDto }: RegisterUserAction) {
-    return this.userService.registerUsingPOST(userDto)
+    return this.userService.registerUsingPOST(userDto).pipe(
+      tap(response => {
+        ctx.dispatch(new Navigate(['/city-list']))
+      })
+    )
   }
 
   @Action(LoginWithCookieAction)
