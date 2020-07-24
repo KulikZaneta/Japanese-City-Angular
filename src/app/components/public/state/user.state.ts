@@ -1,9 +1,10 @@
+import { PageUserDto } from './../../../../api/models/page-user-dto';
 import { state } from '@angular/animations';
 import { UserDto } from './../../../../api/models/user-dto';
 import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { LogInAction, LogOutAction, RegisterUserAction, LoginWithCookieAction, CurrentUserAction } from './user.actions';
+import { LogInAction, LogOutAction, RegisterUserAction, LoginWithCookieAction, CurrentUserAction, PageAction } from './user.actions';
 import Cookie from 'js-cookie';
 import { UserControllerService } from 'src/api/services';
 import { Navigate } from '@ngxs/router-plugin';
@@ -11,18 +12,19 @@ import { Navigate } from '@ngxs/router-plugin';
 export class UserStateModel {
   jwtToken: string
   currentUser: UserDto
+  userPage: PageUserDto
 }
 
 @State<UserStateModel>({
   name: 'user',
   defaults: {
     jwtToken: null,
-    currentUser: null
+    currentUser: null,
+    userPage: null
   }
 })
 
 export class UserState {
-
 
   constructor(public httpClient: HttpClient, public userService: UserControllerService) {
   }
@@ -77,5 +79,10 @@ export class UserState {
   @Action(CurrentUserAction)
   currentUser(ctx: StateContext<UserStateModel>) {
     return this.userService.infoUserUsingGET().pipe(tap( response => ctx.patchState({currentUser: response})))
+  }
+
+  @Action(PageAction)
+  pageUser(ctx: StateContext<UserStateModel>, { page, size }: PageAction) {
+    return this.userService.pageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ userPage: response })))
   }
 }

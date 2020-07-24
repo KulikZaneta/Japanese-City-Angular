@@ -1,1 +1,36 @@
-<p>list-of-users works!</p>
+<div class="mat-elevation-z8" style="opacity: 1;" *ngIf="userPage$ | async as userPage">
+    <table mat-table [dataSource]="userPage.content">
+  
+      <ng-container matColumnDef="username" ;>
+        <th mat-header-cell *matHeaderCellDef>
+          <h1>Username</h1>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <h2>{{element.username}}</h2>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>
+          <h1>Email</h1>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <h3>{{element.email}}</h3>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="roles">
+        <th mat-header-cell *matHeaderCellDef>
+          <h1>Roles</h1>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <h3>{{element.roles}}</h3>
+        </td>
+      </ng-container>
+       
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons [length]="userPage.totalElements"
+      [pageSize]="userPage.size" (page)="changePage($event)"></mat-paginator>
+  </div>

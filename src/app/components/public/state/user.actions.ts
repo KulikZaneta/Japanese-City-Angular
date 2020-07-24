@@ -24,3 +24,7 @@ export class CurrentUserAction {
   constructor() { }
 }
 
+export class PageAction {
+  static readonly type = '[User] PageAction';
+  constructor(public page: number, public size: number) { }
+}
