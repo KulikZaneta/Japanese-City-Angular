@@ -1,9 +1,11 @@
 export { AttractionDto } from './models/attraction-dto';
 export { JapaneseCityDto } from './models/japanese-city-dto';
 export { JapaneseCitySelect } from './models/japanese-city-select';
+export { ModelAndView } from './models/model-and-view';
 export { Pageable } from './models/pageable';
 export { PageAttractionDto } from './models/page-attraction-dto';
 export { PageJapaneseCityDto } from './models/page-japanese-city-dto';
 export { PageUserDto } from './models/page-user-dto';
 export { Sort } from './models/sort';
 export { UserDto } from './models/user-dto';
+export { View } from './models/view';
