@@ -1,10 +1,24 @@
+import { Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { Observable } from 'rxjs';
+import { UserState } from '../public/state/user.state';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    intercept(req: import("@angular/common/http").HttpRequest<any>, next: import("@angular/common/http").HttpHandler): import("rxjs").Observable<import("@angular/common/http").HttpEvent<any>> {
-        throw new Error("Method not implemented.");
+    constructor(public auth: AuthGuardService, public store: Store) { }
+
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const jwtToken = this.store.selectSnapshot(UserState.jwtToken)
+        if(jwtToken) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: 'Bearer ' + jwtToken
+                }
+            });
+        }
+        return next.handle(request);
     }
-    
+
 }

@@ -55,6 +55,7 @@ export class UserState {
   logOut(ctx: StateContext<UserStateModel>) {
     ctx.patchState({ jwtToken: null, currentUser: null })
     Cookie.remove("token")
+    ctx.dispatch(new Navigate(['/city-list']))
   }
 
   @Action(RegisterUserAction)
@@ -69,8 +70,8 @@ export class UserState {
   @Action(LoginWithCookieAction)
   loginWithCookie(ctx: StateContext<UserStateModel>) {
     const token = Cookie.get("token")
-    if(token) {
-      ctx.patchState({jwtToken: token})
+    if (token) {
+      ctx.patchState({ jwtToken: token })
       ctx.dispatch(new CurrentUserAction())
     }
 
@@ -78,11 +79,11 @@ export class UserState {
 
   @Action(CurrentUserAction)
   currentUser(ctx: StateContext<UserStateModel>) {
-    return this.userService.infoUserUsingGET().pipe(tap( response => ctx.patchState({currentUser: response})))
+    return this.userService.infoUserUsingGET().pipe(tap(response => ctx.patchState({ currentUser: response })))
   }
 
   @Action(PageAction)
   pageUser(ctx: StateContext<UserStateModel>, { page, size }: PageAction) {
-    return this.userService.pageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ userPage: response })))
+    return this.userService.getUserPageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ userPage: response })))
   }
 }

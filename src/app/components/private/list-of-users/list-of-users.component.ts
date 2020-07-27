@@ -3,8 +3,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Router } from '@angular/router';
-import { PageAction } from '../../public/state/user.actions';
-import { MatTableDataSource } from '@angular/material';
+import { PageAction } from '../../public/state/user.actions'
 
 @Component({
   selector: 'app-list-of-users',
@@ -12,7 +11,7 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./list-of-users.component.sass']
 })
 export class ListOfUsersComponent implements OnInit {
-  displayedColumns = ['username, email, roles']
+  displayedColumns = ['username', 'email', 'roles']
   
   @Select(state => state.user.userPage)
   userPage$: Observable<PageUserDto>
