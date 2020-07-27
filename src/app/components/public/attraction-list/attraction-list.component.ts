@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./attraction-list.component.sass']
 })
 export class AttractionListComponent implements OnInit {
-  displayedColumns = ["name", "url", "more"]
-  displayColumunNotLogged = ["name", "url"]
+  displayedColumns = ['name', 'url', 'more']
+  displayColumunNotLogged = ['name', 'url']
 
   @Select(state => state.attraction.attractionPage)
   attractionPage$: Observable<PageAttractionDto>

@@ -17,7 +17,7 @@ import { UserDto } from '../models/user-dto';
   providedIn: 'root',
 })
 class UserControllerService extends __BaseService {
-  static readonly pageUsingGETPath = '/users';
+  static readonly getUserPageUsingGETPath = '/users';
   static readonly infoUserUsingGETPath = '/users/current';
   static readonly registerUsingPOSTPath = '/users/register';
 
@@ -29,7 +29,7 @@ class UserControllerService extends __BaseService {
   }
 
   /**
-   * @param params The `UserControllerService.PageUsingGETParams` containing the following parameters:
+   * @param params The `UserControllerService.GetUserPageUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -37,7 +37,7 @@ class UserControllerService extends __BaseService {
    *
    * @return OK
    */
-  pageUsingGETResponse(params: UserControllerService.PageUsingGETParams): __Observable<__StrictHttpResponse<PageUserDto>> {
+  getUserPageUsingGETResponse(params: UserControllerService.GetUserPageUsingGETParams): __Observable<__StrictHttpResponse<PageUserDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -61,7 +61,7 @@ class UserControllerService extends __BaseService {
     );
   }
   /**
-   * @param params The `UserControllerService.PageUsingGETParams` containing the following parameters:
+   * @param params The `UserControllerService.GetUserPageUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -69,8 +69,8 @@ class UserControllerService extends __BaseService {
    *
    * @return OK
    */
-  pageUsingGET(params: UserControllerService.PageUsingGETParams): __Observable<PageUserDto> {
-    return this.pageUsingGETResponse(params).pipe(
+  getUserPageUsingGET(params: UserControllerService.GetUserPageUsingGETParams): __Observable<PageUserDto> {
+    return this.getUserPageUsingGETResponse(params).pipe(
       __map(_r => _r.body as PageUserDto)
     );
   }
@@ -146,9 +146,9 @@ class UserControllerService extends __BaseService {
 module UserControllerService {
 
   /**
-   * Parameters for pageUsingGET
+   * Parameters for getUserPageUsingGET
    */
-  export interface PageUsingGETParams {
+  export interface GetUserPageUsingGETParams {
 
     /**
      * size

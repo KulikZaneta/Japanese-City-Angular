@@ -23,7 +23,6 @@ export class JapaneseCityStateModel {
   }
 })
 
-
 export class JapaneseCityState {
   constructor(public japaneseCityService: JapaneseCityControllerService, public matSnackBar: MatSnackBar) { }
 

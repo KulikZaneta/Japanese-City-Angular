@@ -55,9 +55,7 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
     FormlyModule.forRoot(),
     FormlyMaterialModule,
     NgxsRouterPluginModule.forRoot(),
-    PrivateModule,
-    PublicModule
-
+    PrivateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

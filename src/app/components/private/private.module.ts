@@ -5,6 +5,7 @@ import { Router, Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { MatTableModule, MatPaginatorModule } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './token-interceptor';
 
 const routes: Routes =[
   {
@@ -24,8 +25,8 @@ const routes: Routes =[
     MatPaginatorModule,
     HttpClientModule
   ],
-  // providers: [
-  //   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
-  // ]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ]
 })
 export class PrivateModule { }
