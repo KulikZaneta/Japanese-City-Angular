@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Router } from '@angular/router';
-import { PageAction } from '../../public/state/user.actions'
+import { UserPageAction } from '../../public/state/user.actions'
 
 @Component({
   selector: 'app-list-of-users',
@@ -19,6 +19,6 @@ export class ListOfUsersComponent implements OnInit {
   constructor(public store: Store, public router: Router) { }
 
   ngOnInit() {
-    this.store.dispatch(new PageAction(0, 10))
+    this.store.dispatch(new UserPageAction(0, 10))
   }
 }

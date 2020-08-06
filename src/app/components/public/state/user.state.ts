@@ -4,7 +4,7 @@ import { UserDto } from './../../../../api/models/user-dto';
 import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { LogInAction, LogOutAction, RegisterUserAction, LoginWithCookieAction, CurrentUserAction, PageAction } from './user.actions';
+import { LogInAction, LogOutAction, RegisterUserAction, LoginWithCookieAction, CurrentUserAction, UserPageAction } from './user.actions';
 import Cookie from 'js-cookie';
 import { UserControllerService } from 'src/api/services';
 import { Navigate } from '@ngxs/router-plugin';
@@ -82,8 +82,8 @@ export class UserState {
     return this.userService.infoUserUsingGET().pipe(tap(response => ctx.patchState({ currentUser: response })))
   }
 
-  @Action(PageAction)
-  pageUser(ctx: StateContext<UserStateModel>, { page, size }: PageAction) {
+  @Action(UserPageAction)
+  pageUser(ctx: StateContext<UserStateModel>, { page, size }: UserPageAction) {
     return this.userService.getUserPageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ userPage: response })))
   }
 }
