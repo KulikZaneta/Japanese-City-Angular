@@ -21,15 +21,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-import { Page404Component } from './components/public/page404/page404.component';
-import { AttractionListComponent } from './components/public/attraction-list/attraction-list.component';
+import { Page404Component } from './components/page404/page404.component';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
-
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
@@ -55,7 +55,8 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
     FormlyModule.forRoot(),
     FormlyMaterialModule,
     NgxsRouterPluginModule.forRoot(),
-    PrivateModule
+    PrivateModule,
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

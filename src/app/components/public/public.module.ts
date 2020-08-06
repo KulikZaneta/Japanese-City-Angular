@@ -1,6 +1,6 @@
 import { AuthGuardService } from './../private/guards/auth-guard.service';
 import { UserState } from './state/user.state';
-import { Page404Component } from './page404/page404.component';
+import { Page404Component } from '../page404/page404.component';
 import { AttractionState } from './state/attraction.state';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
@@ -27,7 +27,7 @@ import { AttractionsComponent } from './add-attractions/attractions.component';
 import { AttractionListComponent } from './attraction-list/attraction-list.component';
 import { RegisterComponent } from './register/register.component';
 
-const routes: Routes = [
+export const publicRoutes: Routes = [
   {
     path: '',
     component: CityListComponent
@@ -71,18 +71,14 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: '**',
-    component: Page404Component
   }
 ]
 
 @NgModule({
-  declarations: [AttractionsComponent, AddCityComponent, AttractionListComponent, CityDetailsComponent, CityListComponent, Page404Component, UserComponent, RegisterComponent],
+  declarations: [AttractionsComponent, AddCityComponent, AttractionListComponent, CityDetailsComponent, CityListComponent, UserComponent, RegisterComponent],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(publicRoutes),
     MatTableModule,
     MatPaginatorModule,
     NgxsModule.forRoot([JapaneseCityState, AttractionState, UserState]),

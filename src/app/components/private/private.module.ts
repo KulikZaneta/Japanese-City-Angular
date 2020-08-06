@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListOfUsersComponent } from './list-of-users/list-of-users.component';
@@ -6,21 +7,25 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { MatTableModule, MatPaginatorModule } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token-interceptor';
+import { UserComponent } from './user/user.component';
 
-const routes: Routes =[
+export const userRoutes: Routes = [
   {
-    path: 'users',
-    component: ListOfUsersComponent,
-    canActivate: [AuthGuardService],
-    data: {role:'ROLE_ADMIN'}
-  }
-]
+    path: 'private', component: UserComponent, children: [
+      {
+        path: 'users',
+        component: ListOfUsersComponent,
+        canActivate: [AuthGuardService],
+        data: { role: 'ROLE_ADMIN' }
+      }
+    ]
+  }]
 
 @NgModule({
-  declarations: [ListOfUsersComponent],
+  declarations: [ListOfUsersComponent, UserComponent],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forChild(userRoutes),
     MatTableModule,
     MatPaginatorModule,
     HttpClientModule
