@@ -19,7 +19,6 @@ export const userRoutes: Routes = [
         data: { role: 'ROLE_ADMIN' }
       }
     ]
-  }]
 
 @NgModule({
   declarations: [ListOfUsersComponent, UserComponent],
