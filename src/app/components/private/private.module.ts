@@ -7,21 +7,18 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { MatTableModule, MatPaginatorModule } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token-interceptor';
-import { UserComponent } from './user/user.component';
 
 export const userRoutes: Routes = [
   {
-    path: 'private', component: UserComponent, children: [
-      {
-        path: 'users',
-        component: ListOfUsersComponent,
-        canActivate: [AuthGuardService],
-        data: { role: 'ROLE_ADMIN' }
-      }
-    ]
+    path: 'private/users',
+    component: ListOfUsersComponent,
+    canActivate: [AuthGuardService],
+    data: { role: 'ROLE_ADMIN' }
+  }
+]
 
 @NgModule({
-  declarations: [ListOfUsersComponent, UserComponent],
+  declarations: [ListOfUsersComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(userRoutes),
