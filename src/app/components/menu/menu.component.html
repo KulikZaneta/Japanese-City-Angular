@@ -23,6 +23,9 @@
       <a mat-list-item routerLink="/user" *ngIf="(jwtToken$ | async )" (click)="logOut()">
         <h4>{{'menu.logOut' | translate}}</h4>
       </a>
+      <a mat-list-item routerLink="/private/users" *ngIf="hasAdminAccess()">
+        <h4>{{'menu.list-user' | translate}}</h4>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

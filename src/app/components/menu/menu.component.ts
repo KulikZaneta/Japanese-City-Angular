@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { UserState } from './../public/state/user.state';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +7,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
 import { LogOutAction, LoginWithCookieAction } from '../public/state/user.actions';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -30,7 +32,7 @@ export class MenuComponent implements OnInit {
     this.translate.setDefaultLang('en')
     this.store.dispatch(new LoginWithCookieAction())
   }
-  
+
   public changeLanguage(language: string) {
     this.translate.use(language)
   }
@@ -38,4 +40,16 @@ export class MenuComponent implements OnInit {
   public logOut() {
     this.store.dispatch(new LogOutAction())
   }
+
+  public hasAdminAccess(): boolean {
+    const user = this.store.selectSnapshot(UserState.currentUser)
+    if (user != null && user.roles.includes('ROLE_ADMIN')) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
 }
+
+
