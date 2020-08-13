@@ -1,13 +1,15 @@
 import { PageUserDto } from './../../../../api/models/page-user-dto';
 import { state } from '@angular/animations';
 import { UserDto } from './../../../../api/models/user-dto';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { LogInAction, LogOutAction, RegisterUserAction, LoginWithCookieAction, CurrentUserAction, UserPageAction } from './user.actions';
 import Cookie from 'js-cookie';
 import { UserControllerService } from 'src/api/services';
 import { Navigate } from '@ngxs/router-plugin';
+import { of } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 export class UserStateModel {
   jwtToken: string
@@ -26,7 +28,7 @@ export class UserStateModel {
 
 export class UserState {
 
-  constructor(public httpClient: HttpClient, public userService: UserControllerService) {
+  constructor(public httpClient: HttpClient, public userService: UserControllerService, public matSnackBar: MatSnackBar) {
   }
 
   @Selector()
@@ -47,7 +49,14 @@ export class UserState {
         Cookie.set("token", response.token)
         ctx.dispatch(new Navigate(['/city-list']))
         ctx.dispatch(new CurrentUserAction())
-      })
+        this.matSnackBar.open('Successfully logged', 'X', {
+          duration: 3000, horizontalPosition: "center"})
+      }),
+      catchError(({err, caught}) => {
+        this.matSnackBar.open('Incorrect username or password', 'X', {
+          duration: 3000, horizontalPosition: "center"})
+        return of()
+      }) 
     )
   }
 

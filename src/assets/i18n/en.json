@@ -5,6 +5,7 @@
         "add": "Add city",
         "user": "Log in",
         "attraction-list": "Attraction List",
-        "logOut": "Log out"
+        "logOut": "Log out",
+        "list-user": "List of users"
     }
 }

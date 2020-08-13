@@ -5,6 +5,7 @@
         "add": "Dodaj miasto",
         "user": "Logowanie",
         "attraction-list": "Lista atrakcji",
-        "logOut": "Wyloguj"
+        "logOut": "Wyloguj",
+        "list-user": "Lista użytkowników"
     }
 }

@@ -5,8 +5,8 @@
     <mat-card-title style="text-align: center">Sign in</mat-card-title>
     <form [formGroup]="loginForm">
         <formly-form [form]="loginForm" [fields]="logInFields">
-            <button mat-raised-button color="accent" (click)="login()" [disabled]="!loginForm.valid">Sign in</button>
-            <a class="btn"mat-raised-button routerLink="/register">Sign up</a>
         </formly-form>
+        <button mat-raised-button color="accent" (click)="login()" [disabled]="!loginForm.valid">Sign in</button>
+            <a class="btn"mat-raised-button routerLink="/register">Sign up</a>
     </form>
 </mat-card>

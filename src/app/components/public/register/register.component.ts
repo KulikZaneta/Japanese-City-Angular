@@ -58,10 +58,10 @@ export class RegisterComponent implements OnInit {
       validation: {
         messages: {
           minLenght: 'string',
-          required: 'Password must be at least 8 characters long'
+          required: 'Password must be at least 8 characters'
         }
       }
-    },
+    }
   ]
 
   constructor(public store: Store) { }
