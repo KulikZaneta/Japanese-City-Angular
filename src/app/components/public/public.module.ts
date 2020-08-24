@@ -1,6 +1,5 @@
 import { AuthGuardService } from './../private/guards/auth-guard.service';
 import { UserState } from './state/user.state';
-import { Page404Component } from '../page404/page404.component';
 import { AttractionState } from './state/attraction.state';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';

@@ -1,11 +1,9 @@
 import { PageJapaneseCityDto } from './../../../../api/models/page-japanese-city-dto';
-import { state } from '@angular/animations';
 import { JapaneseCity, AutoCompleteAction, PageAction } from './../state/japanese-city.actions';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store, Select, State } from '@ngxs/store';
 import { Observable, Subject } from 'rxjs';
-import { JapaneseCityDto } from 'src/api/models';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material';
@@ -15,6 +13,7 @@ import { PageEvent } from '@angular/material';
   templateUrl: './city-list.component.html',
   styleUrls: ['./city-list.component.sass']
 })
+
 export class CityListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'area', 'population', 'details'];
   dataSource = new MatTableDataSource<any>();
@@ -30,7 +29,6 @@ export class CityListComponent implements OnInit {
   jwtToken$: Observable<string>
 
   constructor(public store: Store, public router: Router) { }
-
 
   ngOnInit() {
     this.store.dispatch(new PageAction(0, 10))
@@ -48,5 +46,4 @@ export class CityListComponent implements OnInit {
   page(event: PageEvent) {
     this.store.dispatch(new PageAction(event.pageIndex, event.pageSize))
   }
-
 }

@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { UserState } from './../public/state/user.state';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
@@ -7,7 +6,6 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
 import { LogOutAction, LoginWithCookieAction } from '../public/state/user.actions';
-import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-menu',

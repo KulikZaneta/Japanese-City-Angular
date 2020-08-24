@@ -1,4 +1,5 @@
 import { UserDto } from './../../../../api/models/user-dto';
+
 export class LogInAction {
   static readonly type = '[User] LogInAction';
   constructor(public username: string, public password: string) { }

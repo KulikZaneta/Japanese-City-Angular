@@ -12,12 +12,10 @@ export class AuthGuardService implements CanActivate {
   constructor(public store: Store, public router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    console.log(route.data)
     const role = route.data.role;
     if (this.store.selectSnapshot(UserState.jwtToken)) {
       if(route.data.role) {
         const user = this.store.selectSnapshot(UserState.currentUser)
-        console.log(user)
         if(user.roles.includes(route.data.role)) {
           return true
         }
@@ -25,7 +23,6 @@ export class AuthGuardService implements CanActivate {
         return true
       }
     } 
-    console.log("no access")
     this.router.navigate(['/user'])
     return false
   }

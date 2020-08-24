@@ -10,9 +10,10 @@ import { UserPageAction } from '../../public/state/user.actions'
   templateUrl: './list-of-users.component.html',
   styleUrls: ['./list-of-users.component.sass']
 })
+
 export class ListOfUsersComponent implements OnInit {
   displayedColumns = ['username', 'email', 'roles']
-  
+
   @Select(state => state.user.userPage)
   userPage$: Observable<PageUserDto>
 

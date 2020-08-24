@@ -11,7 +11,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const jwtToken = this.store.selectSnapshot(UserState.jwtToken)
-        if(jwtToken) {
+        if (jwtToken) {
             request = request.clone({
                 setHeaders: {
                     Authorization: 'Bearer ' + jwtToken
@@ -20,5 +20,4 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         return next.handle(request);
     }
-
 }

@@ -1,4 +1,3 @@
-import { RegisterUserAction } from './../state/user.actions';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Store } from '@ngxs/store';

@@ -1,8 +1,7 @@
-import { state } from '@angular/animations';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { PageAttractionDto, AttractionDto } from 'src/api/models';
+import { PageAttractionDto } from 'src/api/models';
 import { Attraction } from '../state/attraction.actions';
 import { PageEvent } from '@angular/material';
 import { Router } from '@angular/router';
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './attraction-list.component.html',
   styleUrls: ['./attraction-list.component.sass']
 })
+
 export class AttractionListComponent implements OnInit {
   displayedColumns = ['name', 'url', 'more']
   displayColumunNotLogged = ['name', 'url']
@@ -20,7 +20,7 @@ export class AttractionListComponent implements OnInit {
   attractionPage$: Observable<PageAttractionDto>
 
   @Select(state => state.user.jwtToken)
-  jwtToken$ : Observable<string>
+  jwtToken$: Observable<string>
 
   constructor(public store: Store, public router: Router) { }
 
@@ -39,5 +39,4 @@ export class AttractionListComponent implements OnInit {
   changePage(event: PageEvent) {
     this.store.dispatch(new Attraction.PageAction(event.pageIndex, event.pageSize))
   }
-
 }

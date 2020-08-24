@@ -1,4 +1,4 @@
-import { PublicModule, publicRoutes } from './components/public/public.module';
+import { publicRoutes } from './components/public/public.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { Page404Component } from './components/page404/page404.component';

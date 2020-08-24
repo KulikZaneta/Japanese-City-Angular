@@ -1,4 +1,5 @@
 import { AttractionDto } from './../../../../api/models/attraction-dto';
+
 export namespace Attraction {
   export class PageAction {
     static readonly type = '[Attraction] Page';

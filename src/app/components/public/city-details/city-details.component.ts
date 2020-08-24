@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
   templateUrl: './city-details.component.html',
   styleUrls: ['./city-details.component.sass']
 })
+
 export class CityDetailsComponent implements OnInit {
 
   @Select(state => state.japaneseCity.detailsCity)

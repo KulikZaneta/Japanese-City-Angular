@@ -53,5 +53,4 @@ export class AttractionState {
       duration: 3000
     })))
   }
-
 }

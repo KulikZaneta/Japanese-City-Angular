@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './add-city.component.html',
   styleUrls: ['./add-city.component.sass']
 })
+
 export class AddCityComponent implements OnInit {
   cityId: number
   cityForm = new FormGroup({})

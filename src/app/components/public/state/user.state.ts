@@ -1,5 +1,4 @@
 import { PageUserDto } from './../../../../api/models/page-user-dto';
-import { state } from '@angular/animations';
 import { UserDto } from './../../../../api/models/user-dto';
 import { tap, map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -50,13 +49,15 @@ export class UserState {
         ctx.dispatch(new Navigate(['/city-list']))
         ctx.dispatch(new CurrentUserAction())
         this.matSnackBar.open('Successfully logged', 'X', {
-          duration: 3000, horizontalPosition: "center"})
+          duration: 3000, horizontalPosition: "center"
+        })
       }),
-      catchError(({err, caught}) => {
+      catchError(({ err, caught }) => {
         this.matSnackBar.open('Incorrect username or password', 'X', {
-          duration: 3000, horizontalPosition: "center"})
+          duration: 3000, horizontalPosition: "center"
+        })
         return of()
-      }) 
+      })
     )
   }
 
@@ -71,7 +72,10 @@ export class UserState {
   register(ctx: StateContext<UserStateModel>, { userDto }: RegisterUserAction) {
     return this.userService.registerUsingPOST(userDto).pipe(
       tap(response => {
-        ctx.dispatch(new Navigate(['/city-list']))
+        this.matSnackBar.open('Account was created successfully. Please log in', 'X', {
+          duration: 10000, horizontalPosition: "center", verticalPosition: "bottom"
+        })
+        ctx.dispatch(new Navigate(['/user']))
       })
     )
   }

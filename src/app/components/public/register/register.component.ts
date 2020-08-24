@@ -1,4 +1,3 @@
-import { UserDto } from './../../../../api/models/user-dto';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, EmailValidator } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
@@ -70,6 +69,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.store.dispatch(new RegisterUserAction({username: this.registerForm.value.username, email: this.registerForm.value.email, password: this.registerForm.value.password}))
+    this.store.dispatch(new RegisterUserAction({ username: this.registerForm.value.username, email: this.registerForm.value.email, password: this.registerForm.value.password }))
   }
 }
