@@ -53,7 +53,7 @@ export class JapaneseCityState {
   @Action(JapaneseCity.DeleteAction)
   deleteCity(ctx: StateContext<JapaneseCityStateModel>, { id }: JapaneseCity.DeleteAction) {
     return this.japaneseCityService.deleteCityUsingDELETE(id).pipe(tap(response => this.matSnackBar.open('delete city', 'X', {
-      duration: 3000, horizontalPosition: 'center'
+      duration: 3000
     })))
   }
 

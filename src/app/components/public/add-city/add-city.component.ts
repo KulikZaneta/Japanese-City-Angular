@@ -65,6 +65,7 @@ export class AddCityComponent implements OnInit {
       name: this.cityForm.value.name, population: this.cityForm.value.population, area: this.cityForm.value.area, description: this.cityForm.value.details, id: this.cityId
     }
     ))
+    this.cityForm.reset()
   }
 
   addCity() {
