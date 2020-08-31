@@ -51,12 +51,12 @@ export class AddCityComponent implements OnInit {
   }
 
   addNewAttraction() {
-    const newAttraction = (this.cityForm.controls['attraction'] as FormArray).controls
+    const newAttraction = this.cityForm.controls['attraction'] as FormArray
     newAttraction.push(this.createNewParameter())
   }
 
   removeAttraction(index: number) {
-    const removeAttraction = (this.cityForm.controls['attraction'] as FormArray)
+    const removeAttraction = this.cityForm.controls['attraction'] as FormArray
     removeAttraction.removeAt(index)
   }
 
@@ -73,6 +73,7 @@ export class AddCityComponent implements OnInit {
       area: this.cityForm.value.area, description: this.cityForm.value.details,
       attractions: this.cityForm.value.attraction
     }))
+    
     this.cityForm.reset()
   }
 }
