@@ -62,7 +62,8 @@ export class AddCityComponent implements OnInit {
 
   updateCity() {
     this.store.dispatch(new JapaneseCity.EditAction({
-      name: this.cityForm.value.name, population: this.cityForm.value.population, area: this.cityForm.value.area, description: this.cityForm.value.details, id: this.cityId
+      name: this.cityForm.value.name, population: this.cityForm.value.population, area: this.cityForm.value.area, description: this.cityForm.value.details, id: this.cityId,
+      attractions: this.cityForm.value.attraction
     }
     ))
     this.cityForm.reset()
