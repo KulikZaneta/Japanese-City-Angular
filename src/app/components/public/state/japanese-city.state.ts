@@ -11,6 +11,8 @@ export class JapaneseCityStateModel {
   public autoCompleteCities: string[]
   public citySelect: JapaneseCityDto[]
   public citiesPage: PageJapaneseCityDto
+  public page: number
+  public size: number
 }
 
 @State<JapaneseCityStateModel>({
@@ -19,7 +21,9 @@ export class JapaneseCityStateModel {
     detailsCity: null,
     autoCompleteCities: [],
     citySelect: [],
-    citiesPage: null
+    citiesPage: null,
+    page: 0,
+    size: 10
   }
 })
 
@@ -52,9 +56,10 @@ export class JapaneseCityState {
 
   @Action(JapaneseCity.DeleteAction)
   deleteCity(ctx: StateContext<JapaneseCityStateModel>, { id }: JapaneseCity.DeleteAction) {
-    return this.japaneseCityService.deleteCityUsingDELETE(id).pipe(tap(response => this.matSnackBar.open('delete city', 'X', {
-      duration: 3000
-    })))
+    return this.japaneseCityService.deleteCityUsingDELETE(id).pipe(tap(response => {
+    ctx.dispatch(new PageAction(ctx.getState().page, ctx.getState().size))
+    this.matSnackBar.open('delete city', 'X', {duration: 3000})
+    }))
   }
 
   @Action(AutoCompleteAction)
@@ -69,6 +74,6 @@ export class JapaneseCityState {
 
   @Action(PageAction)
   pageCities(ctx: StateContext<JapaneseCityStateModel>, { page, size }: PageAction) {
-    return this.japaneseCityService.getJapaneseCityPageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ citiesPage: response })))
+    return this.japaneseCityService.getJapaneseCityPageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ citiesPage: response, page, size })))
   }
 }

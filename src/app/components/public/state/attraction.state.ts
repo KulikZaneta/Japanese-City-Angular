@@ -6,9 +6,12 @@ import { AttractionControllerService } from 'src/api/services/attraction-control
 import { MatSnackBar } from '@angular/material';
 import { Attraction } from './attraction.actions';
 
+
 export class AttractionStateModel {
   public attractionById: AttractionDto
   public attractionPage: PageAttractionDto
+  public page: number
+  public size: number
 
 }
 
@@ -17,6 +20,8 @@ export class AttractionStateModel {
   defaults: {
     attractionById: null,
     attractionPage: null,
+    page: 0,
+    size: 10
 
   }
 })
@@ -25,7 +30,7 @@ export class AttractionState {
 
   @Action(Attraction.PageAction)
   pageAttraction(ctx: StateContext<AttractionStateModel>, { page, size }: Attraction.PageAction) {
-    return this.attractionService.getAttractionPageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ attractionPage: response })))
+    return this.attractionService.getAttractionPageUsingGET({ page, size }).pipe(tap(response => ctx.patchState({ attractionPage: response, page, size })))
   }
 
   @Action(Attraction.FetchIdAction)
@@ -49,8 +54,9 @@ export class AttractionState {
 
   @Action(Attraction.DeleteAction)
   deleteAttraction(ctx: StateContext<AttractionStateModel>, { id }: Attraction.DeleteAction) {
-    return this.attractionService.deleteAttractionUsingDELETE(id).pipe(tap(response => this.matSnackBar.open('delete attraction', 'X', {
-      duration: 3000
-    })))
+    return this.attractionService.deleteAttractionUsingDELETE(id).pipe(tap(response => {
+      this.matSnackBar.open('delete attraction', 'X', {duration: 3000})
+      ctx.dispatch(new Attraction.PageAction(ctx.getState().page, ctx.getState().size))
+    }))
   }
 }
