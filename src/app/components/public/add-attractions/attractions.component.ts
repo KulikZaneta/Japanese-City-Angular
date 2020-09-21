@@ -63,7 +63,7 @@ export class AttractionsComponent implements OnInit {
   }
 
   updateAttraction() {
-    this.store.dispatch(new Attraction.UpdateAction({ cityId: this.attractionForm.value.ciidty, name: this.attractionForm.value.name, url: this.attractionForm.value.url, id: this.attractionId }))
+    this.store.dispatch(new Attraction.UpdateAction({ cityId: this.attractionForm.value.city, name: this.attractionForm.value.name, url: this.attractionForm.value.url, id: this.attractionId }))
   }
 
   createAttractionForm(name?: string, url?: string, city?: number): void {

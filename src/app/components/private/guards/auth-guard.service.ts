@@ -12,7 +12,6 @@ export class AuthGuardService implements CanActivate {
   constructor(public store: Store, public router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    const role = route.data.role;
     if (this.store.selectSnapshot(UserState.jwtToken)) {
       if(route.data.role) {
         const user = this.store.selectSnapshot(UserState.currentUser)

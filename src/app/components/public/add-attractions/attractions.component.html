@@ -26,6 +26,6 @@
     </mat-select>
   </mat-form-field>
 
-  <button *ngIf="!attractionId" mat-raised-button color="primary" (click)="addAttraction()">Save</button>
-  <button *ngIf="attractionId" mat-raised-button color="warn" (click)="updateAttraction()">Change</button>
+  <button *ngIf="!attractionId" mat-raised-button color="primary" (click)="addAttraction()" [disabled]="!attractionForm.valid">Save</button>
+  <button *ngIf="attractionId" mat-raised-button color="warn" (click)="updateAttraction()" [disabled]="!attractionForm.valid">Change</button>
 </form>

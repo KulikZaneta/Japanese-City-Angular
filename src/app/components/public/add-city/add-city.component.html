@@ -60,6 +60,6 @@
   </div>
 
   <button mat-raised-button color="primary" (click)="addNewAttraction()">Add new attraction</button>
-  <button *ngIf="!cityId" mat-raised-button color="accent" (click)="addCity()">Save</button>
-  <button *ngIf="cityId" mat-raised-button color="warn" (click)="updateCity()">Change</button>
+  <button *ngIf="!cityId" mat-raised-button color="accent" (click)="addCity()" [disabled]="!cityForm.valid" >Save</button>
+  <button *ngIf="cityId" mat-raised-button color="warn" (click)="updateCity()" [disabled]="!cityForm.valid">Change</button>
 </form>
