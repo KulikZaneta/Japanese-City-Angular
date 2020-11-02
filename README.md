@@ -5,7 +5,7 @@ The site contains links to attractions and a city search engine.
 
 Logged in users can add, update and delete cities and attractions.
 
-Project in the development process. 
+Application available on AWS -> http://japancities.s3-website.eu-west-2.amazonaws.com
 
 ## Prerequisites
 
